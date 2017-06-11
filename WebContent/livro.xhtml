@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>AEL - Gestão de Livros</title>
+	<h:outputStylesheet library="css" name="teste.css" />
+</h:head>
+<h:body style="background-image: url('./imagens/livros.jpg')">
+	<br />
+	<h2>
+		<span style="font-family: arial, helvetica, sans-serif;">AEL -
+			Auxiliar de Empr&eacute;stimo de Livros</span>
+	</h2>
+	<br />
+	<p:breadCrumb>
+		<p:menuitem value="Home" outcome="index.xhtml/html" />
+		<p:menuitem value="Clientes" outcome="cliente.xhtml/html" />
+		<p:menuitem value="Livros" outcome="livro.xhtml/html" />
+		<p:menuitem value="Empréstimos" outcome="emprestimo.xhtml/html" />
+		<p:menuitem value="Agradecimentos" outcome="agradecimento.xhtml/html" />
+	</p:breadCrumb>
+	<br />
+	<br />
+
+	<p:fieldset legend="Gestão de Livros" style="margin-bottom:20px">
+		<h:panelGrid columns="2" cellpadding="5">
+			<h:form>
+				<h:panelGrid id="grid" columns="3" cellpadding="5">
+					<p:outputLabel for="nome" value="Nome" />
+					<p:inputText id="nome" required="true"
+						value="#{livroMB.livroAtual.nome}" />
+					<p:message for="nome" />
+
+					<p:outputLabel for="col" value="Tipo de Coleção" />
+					<p:inputText id="col" required="false"
+						value="#{livroMB.livroAtual.tipoColecao}" />
+					<p:message for="col" display="col" />
+
+					<p:outputLabel for="ed" value="Nº Edição" />
+					<p:inputText id="ed" required="false"
+						value="#{livroMB.livroAtual.numEdicao}" />
+					<p:message for="ed" display="ed" />
+
+					<p:outputLabel for="ano" value="Ano" />
+					<p:inputText id="ano" required="false"
+						value="#{livroMB.livroAtual.ano}" />
+					<p:message for="ano" display="ano" />
+				</h:panelGrid>
+				<br />
+				<br />
+
+
+				<p:splitButton value="Selecione..." action="#" icon="ui-icon-disk">
+					<p:menuitem value="Adicionar" action="#{livroMB.adicionar}"
+						icon="ui-icon-arrowrefresh-1-w" update="grid" />
+
+					<p:menuitem value="Alterar" action="#{livroMB.alterar}"
+						icon="ui-icon-arrowrefresh-1-w" update="grid" />
+
+					<p:menuitem value="Excluir" action="#{livroMB.excluir}"
+						ajax="false" icon="ui-icon-close" update="grid" />
+
+					<p:menuitem value="Pesquisar por Nome"
+						action="#{livroMB.pesquisar}" ajax="false" icon="ui-icon-search" />
+
+					<p:separator />
+					<p:menuitem value="Todos os registros" action="#{livroMB.todos}"
+						ajax="false" icon="ui-icon-search" />
+
+					<p:separator />
+					<p:menuitem value="Voltar à Página Inicial"
+						action="index.xhtml/html" icon="ui-icon-extlink" />
+				</p:splitButton>
+				<br />
+				<br />
+			* Um livro não pode ser excluído se houver emprestimos relacionados!
+			</h:form>
+			<br />
+			<br />
+
+			<h:form>
+				<p:dataTable var="livro" value="#{livroMB.lista}">
+					<p:column headerText="Id">
+						<h:outputText value="#{livro.id}" />
+					</p:column>
+
+					<p:column headerText="Nome">
+						<h:outputText value="#{livro.nome}" />
+					</p:column>
+
+					<p:column headerText="Tipo de Coleção">
+						<h:outputText value="#{livro.tipoColecao}" />
+					</p:column>
+
+					<p:column headerText="Nº de Edição">
+						<h:outputText value="#{livro.numEdicao}" />
+					</p:column>
+
+					<p:column headerText="Ano">
+						<h:outputText value="#{livro.ano}" />
+					</p:column>
+
+				</p:dataTable>
+			</h:form>
+		</h:panelGrid>
+	</p:fieldset>
+</h:body>
+</html>

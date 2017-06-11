@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>AEL - Gestão de Empréstimos</title>
+</h:head>
+<h:body style="background-image: url('./imagens/livros.jpg')">
+	<br />
+	<h2>
+		<span style="font-family: arial, helvetica, sans-serif;">AEL -
+			Auxiliar de Empr&eacute;stimo de Livros</span>
+	</h2>
+	<br />
+	<p:breadCrumb>
+		<p:menuitem value="Home" outcome="index.xhtml/html" />
+		<p:menuitem value="Clientes" outcome="cliente.xhtml/html" />
+		<p:menuitem value="Livros" outcome="livro.xhtml/html" />
+		<p:menuitem value="Empréstimos" outcome="emprestimo.xhtml/html" />
+		<p:menuitem value="Agradecimentos" outcome="agradecimento.xhtml/html" />
+	</p:breadCrumb>
+	<br />
+	<br />
+
+	<p:fieldset legend="Gestão de Empréstimos" style="margin-bottom:20px">
+		<h:panelGrid columns="2" cellpadding="5">
+			<h:form>
+				<h:panelGrid id="grid" columns="3" cellpadding="5">
+					<p:outputLabel for="cliente" value="ID Cliente" />
+					<p:inputText id="cliente" required="true"
+						value="#{emprestimoMB.clienteAtual.id}" />
+					<p:message for="cliente" />
+
+					<p:outputLabel for="livro" value="ID Livro" />
+					<p:inputText id="livro" required="true"
+						value="#{emprestimoMB.livroAtual.id}" />
+					<p:message for="livro" display="livro" />
+
+					<p:outputLabel for="dte" value="Data empréstimo" />
+					<p:inputText id="dte" requirdte="false"
+						value="#{emprestimoMB.emprestimoAtual.dataEmprestimo}" />
+					<p:message for="dte" display="dte" />
+
+					<p:outputLabel for="dtd" value="Data devolução" />
+					<p:inputText id="dtd" required="false"
+						value="#{emprestimoMB.emprestimoAtual.dataDevolucao}" />
+					<p:message for="dtd" display="dtd" />
+
+					<p:outputLabel for="console" value="Status:" />
+					<p:selectOneMenu id="console"
+						value="#{emprestimoMB.emprestimoAtual.devolvido}"
+						style="width:125px">
+						<f:selectItem itemLabel="Emprestado" itemValue="emprestado" />
+						<f:selectItem itemLabel="Devolvido" itemValue="devolvido" />
+					</p:selectOneMenu>
+				</h:panelGrid>
+				<br />
+				<br />
+
+
+				<p:splitButton value="Selecione..." action="#" icon="ui-icon-disk">
+					<p:menuitem value="Emprestar" action="#{emprestimoMB.emprestar}"
+						icon="ui-icon-arrowrefresh-1-w" update="grid" />
+
+					<p:menuitem value="Alterar" action="#{emprestimoMB.alterar}"
+						icon="ui-icon-arrowrefresh-1-w" update="grid" />
+
+					<p:menuitem value="Excluir" action="#{emprestimoMB.excluir}"
+						ajax="false" icon="ui-icon-close" update="grid" />
+
+					<p:menuitem value="Pesquisar por Cliente"
+						action="#{emprestimoMB.pesquisarCliente}" ajax="false"
+						icon="ui-icon-search" />
+
+					<p:menuitem value="Pesquisar por Livro"
+						action="#{emprestimoMB.pesquisarLivro}" ajax="false"
+						icon="ui-icon-search" />
+
+					<p:separator />
+					<p:menuitem value="Todos os registros"
+						action="#{emprestimoMB.todos}" ajax="false" icon="ui-icon-search" />
+
+					<p:separator />
+					<p:menuitem value="Voltar à Página Inicial"
+						action="index.xhtml/html" icon="ui-icon-extlink" />
+				</p:splitButton>
+			</h:form>
+			<br />
+			<br />
+
+			<h:form>
+				<p:dataTable var="emprestimo" value="#{emprestimoMB.lista}">
+
+					<p:column headerText="Nome do Cliente">
+						<h:outputText value="#{emprestimo.cliente.nome}" />
+					</p:column>
+
+					<p:column headerText="Nome do Livro">
+						<h:outputText value="#{emprestimo.livro.nome}" />
+					</p:column>
+
+					<p:column headerText="Data de Empréstimo">
+						<h:outputText value="#{emprestimo.dataEmprestimo}" />
+					</p:column>
+
+					<p:column headerText="Data de Devolução">
+						<h:outputText value="#{emprestimo.dataDevolucao}" />
+					</p:column>
+
+					<p:column headerText="Devolvido">
+						<h:outputText value="#{emprestimo.devolvido}" />
+					</p:column>
+
+				</p:dataTable>
+			</h:form>
+			<br />
+			<br />
+
+
+			<h:form>
+				<h:panelGrid columns="3">
+					<h:outputLabel value="Nome do Cliente" />
+					<h:inputText value="#{clienteMB.clienteAtual.nome}" />
+					<h:commandButton value="Pesquisar" action="#{clienteMB.pesquisar}" />
+				</h:panelGrid>
+				<br />
+
+
+				<p:dataTable var="cliente" value="#{clienteMB.lista}">
+					<p:column headerText="Id">
+						<h:outputText value="#{cliente.id}" />
+					</p:column>
+
+					<p:column headerText="Nome">
+						<h:outputText value="#{cliente.nome}" />
+					</p:column>
+
+					<p:column headerText="Telefone">
+						<h:outputText value="#{cliente.telefone}" />
+					</p:column>
+
+					<p:column headerText="Endereço">
+						<h:outputText value="#{cliente.endereco}" />
+					</p:column>
+
+				</p:dataTable>
+			</h:form>
+			<br />
+			<br />
+
+
+			<h:form>
+				<h:panelGrid columns="3">
+					<h:outputLabel value="Nome do Livro" />
+					<h:inputText value="#{livroMB.livroAtual.nome}" />
+					<h:commandButton value="Pesquisar" action="#{livroMB.pesquisar}" />
+				</h:panelGrid>
+				<br />
+
+
+				<p:dataTable var="livro" value="#{livroMB.lista}">
+					<p:column headerText="Id">
+						<h:outputText value="#{livro.id}" />
+					</p:column>
+
+					<p:column headerText="Nome">
+						<h:outputText value="#{livro.nome}" />
+					</p:column>
+
+					<p:column headerText="Tipo de Coleção">
+						<h:outputText value="#{livro.tipoColecao}" />
+					</p:column>
+
+					<p:column headerText="Nº de Edição">
+						<h:outputText value="#{livro.numEdicao}" />
+					</p:column>
+
+					<p:column headerText="Ano">
+						<h:outputText value="#{livro.ano}" />
+					</p:column>
+				</p:dataTable>
+			</h:form>
+		</h:panelGrid>
+	</p:fieldset>
+</h:body>
+</html>

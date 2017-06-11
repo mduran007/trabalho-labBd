@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>AEL - Início</title>
+	<style type="text/css">
+body {
+	background-image: url('' ./ imagens/ ');
+}
+</style>
+</h:head>
+<h:body style="background-image: url('./imagens/livros.jpg')">
+	<br />
+	<h2>
+		<span style="font-family: arial, helvetica, sans-serif;">AEL -
+			Auxiliar de Empr&eacute;stimo de Livros</span>
+	</h2>
+	<br />
+
+	<p:breadCrumb>
+		<p:menuitem value="Home" outcome="index.xhtml/html" />
+		<p:menuitem value="Clientes" outcome="cliente.xhtml/html" />
+		<p:menuitem value="Livros" outcome="livro.xhtml/html" />
+		<p:menuitem value="Empréstimos" outcome="emprestimo.xhtml/html" />
+		<p:menuitem value="Agradecimentos" outcome="agradecimento.xhtml/html" />
+	</p:breadCrumb>
+	<br />
+	<br />
+
+
+	<p:fieldset legend="Seja bem-vindo!" style="margin-bottom:20px">
+		<h:panelGrid columns="2" cellpadding="5">
+			<!--  <p:graphicImage name="/imagens/garfield.jpg" /> -->
+			<h:outputText value="" />
+
+			<p>
+				<span style="font-family: arial, helvetica, sans-serif;">Se
+					voc&ecirc; est&aacute; lendo isso, &eacute; por que tudo
+					est&aacute; pronto para o in&iacute;cio de seu teste!&nbsp;</span>
+			</p>
+			<p>
+				<span style="font-family: arial, helvetica, sans-serif;">Agradecemos
+					seu tempo dispensado, e sugerimos que inicie seguindo a ordem dos
+					itens no menu:</span>
+			</p>
+			<ol>
+				<li><span style="font-family: arial, helvetica, sans-serif;">Cadastrar
+						um cliente</span></li>
+				<li><span style="font-family: arial, helvetica, sans-serif;">Cadastrar
+						um livro</span></li>
+				<li><span style="font-family: arial, helvetica, sans-serif;">Cadastrar
+						um Empr&eacute;stimo</span></li>
+			</ol>
+			<p>
+				<span style="font-family: arial, helvetica, sans-serif;">Em
+					cada item voc&ecirc; poder&aacute;:</span>
+			</p>
+			<ul>
+				<li><span style="font-family: arial, helvetica, sans-serif;">Cadastrar</span></li>
+				<li><span style="font-family: arial, helvetica, sans-serif;">Consultar</span></li>
+				<li><span style="font-family: arial, helvetica, sans-serif;">Excluir</span></li>
+			</ul>
+
+		<br/>	
+		<strong>OBS:</strong> Relacionamentos entre as tabelas, o que pode impedir a exclusão de algum registro pai sem antes excluir seus registros filhos.
+		<br/>
+		<p>O histórico e a documentação podem ser acompanhados no <a href="https://bitbucket.org/eita_jess/labengenharia/wiki/"> wiki</a> do projeto.
+	Na raiz do projeto você encontra a pasta "Recursos" com as tabelas do banco de dados (aeldb.sql).
+	Para a conexão no banco, trocar o usuário e senha do MySQL na Classe DBUtil (package edu.projeto.dao).</p>
+		</h:panelGrid>
+	</p:fieldset>
+
+	<!-- 	<p:tabMenu activeIndex="#{param.i}">
+    <p:menuitem value="Cliente" outcome="cliente.xhtml" icon="ui-icon-person">
+        <f:param name="i" value="0" />
+    </p:menuitem>
+    <p:menuitem value="Livros" outcome="livro.xhtml" icon="ui-icon-document">
+        <f:param name="i" value="1" />
+    </p:menuitem>
+    <p:menuitem value="Empréstimos" outcome="emprestimo.xhtml" icon="ui-icon-document">
+        <f:param name="i" value="2" />
+    </p:menuitem>
+</p:tabMenu> -->
+
+	<!-- 	<h:form>
+		<p:megaMenu style="margin-top:10px">
+			<p:submenu label="Menu" icon="ui-icon-check">
+				<p:column>
+					<p:submenu label="Clientes">
+						<p:menuitem value="Acessar" action="cliente.xhtml/html" />
+					</p:submenu>
+					<p:submenu label="Livros" icon="ui-icon-check">
+						<p:menuitem value="Acessar" action="livro.xhtml/html" />
+					</p:submenu>
+					<p:submenu label="Emprestimos">
+						<p:menuitem value="Acessar" action="emprestimo.xhtml/html" />
+					</p:submenu>
+				</p:column>
+			</p:submenu>
+			<p:menuitem value="Quit" action="agradecimento.xhtml/html"
+				icon="ui-icon-close" />
+		</p:megaMenu>
+	</h:form> -->
+</h:body>
+</html>
